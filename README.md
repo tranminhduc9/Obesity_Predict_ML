@@ -25,4 +25,35 @@ Chuyển đổi các giá trị yes/no và Female/Male thành 0/1:
 ### 5. Chuẩn hóa nhãn (Label)
 - Sử dụng `LabelEncoder` để mã hóa cột `NObeyesdad` (mức độ béo phì) thành các giá trị số
 
+## Phân tích và Trực quan hóa
+
+### 1. Phân bố dữ liệu
+- **Nhãn**: Phân bố cân bằng giữa 7 loại béo phì (10-20% mỗi loại)
+- **Biến liên tục**: Age lệch phải (tập trung ở nhóm trẻ), Height và Weight phân bố chuẩn
+- **Biến category**: Gender cân bằng, MTRANS tập trung ở phương tiện công cộng
+
+### 2. Biểu đồ
+- Histogram cho các biến liên tục
+- Pie chart (donut) cho các biến category
+- Phân biệt màu sắc theo nhãn
+
+## Giảm chiều dữ liệu
+
+### 1. PCA (Principal Component Analysis)
+- Giảm từ 16 chiều xuống 4 chiều
+- Phương pháp unsupervised (không dùng nhãn)
+- Giữ lại phương sai tổng thể của dữ liệu
+- **Ưu điểm**: Giảm nhiễu, loại bỏ đa cộng tuyến
+- **Nhược điểm**: Các lớp vẫn chồng lấn, không tối ưu cho phân loại
+
+### 2. LDA (Linear Discriminant Analysis)
+- Giảm từ 16 chiều xuống 4 chiều
+- Phương pháp supervised (sử dụng nhãn)
+- Tối đa hóa khả năng phân biệt giữa các lớp
+- **Ưu điểm**: Tách biệt các lớp rõ ràng, tối ưu cho phân loại
+- **Nhược điểm**: Cần có nhãn, giả định phân phối chuẩn
+
+### 3. Kết luận
+- **LDA phù hợp hơn** cho bài toán phân loại béo phì vì tách biệt các lớp tốt hơn
+
 
