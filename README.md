@@ -9,10 +9,21 @@
 - **Weight (Cân nặng)**: Làm tròn đến 2 chữ số thập phân
 
 ### 3. Mã hóa dữ liệu Category
-Sử dụng `LabelEncoder` để chuyển đổi các cột category sang số:
-- `CAEC` (Consumption of food between meals)
-- `CALC` (Consumption of alcohol)
-- `MTRANS` (Transportation used)
+
+#### 3.1. Ordinal Encoding (CAEC, CALC)
+Mã hóa thứ tự theo mức độ tăng dần:
+- **CAEC** (Consumption of food between meals): no=0, Sometimes=1, Frequently=2, Always=3
+- **CALC** (Consumption of alcohol): no=0, Sometimes=1, Frequently=2
+
+#### 3.2. One-Hot Encoding (MTRANS)
+Tạo các cột nhị phân (0/1):
+- `MTRANS_Automobile`
+- `MTRANS_Bike`
+- `MTRANS_Motorbike`
+- `MTRANS_Public_Transportation`
+- `MTRANS_Walking`
+
+Sau khi mã hóa, cột `MTRANS` gốc được xóa để tránh dư thừa.
 
 ### 4. Chuẩn hóa dữ liệu nhị phân
 Chuyển đổi các giá trị yes/no và Female/Male thành 0/1:
@@ -40,14 +51,14 @@ Chuyển đổi các giá trị yes/no và Female/Male thành 0/1:
 ## Giảm chiều dữ liệu
 
 ### 1. PCA (Principal Component Analysis)
-- Giảm từ 16 chiều xuống 4 chiều
+- Giảm từ 8 chiều (biến liên tục) xuống 4 chiều
 - Phương pháp unsupervised (không dùng nhãn)
 - Giữ lại phương sai tổng thể của dữ liệu
 - **Ưu điểm**: Giảm nhiễu, loại bỏ đa cộng tuyến
 - **Nhược điểm**: Các lớp vẫn chồng lấn, không tối ưu cho phân loại
 
 ### 2. LDA (Linear Discriminant Analysis)
-- Giảm từ 16 chiều xuống 4 chiều
+- Giảm từ 8 chiều (biến liên tục) xuống 4 chiều
 - Phương pháp supervised (sử dụng nhãn)
 - Tối đa hóa khả năng phân biệt giữa các lớp
 - **Ưu điểm**: Tách biệt các lớp rõ ràng, tối ưu cho phân loại
